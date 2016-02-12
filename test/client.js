@@ -7,7 +7,7 @@ var host = '127.0.0.1';
 var port = 7770;
 
 var testApp = Server.createServer(function(req, resp) {
-  resp.write(['0Loopback', 'example', host, port].join('\t'));
+  resp.write(['1Loopback', 'example', host, port].join('\t'));
   resp.write('\r\n.\r\n');
   resp.end();
 });
@@ -24,8 +24,8 @@ describe('gopher.client', function() {
   });
 
 
-  describe("getMenu", function() {
-    it("should query a host for data", function(done){
+  describe('getMenu', function() {
+    it('should query a host for data', function(done){
       Gopher.getMenu(host,port,'example', function(error, menu) {
         assert.equal(error, undefined);
         assert.typeOf(menu, 'array');
