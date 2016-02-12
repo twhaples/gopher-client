@@ -1,5 +1,5 @@
 'use strict';
-var Gopher = require('../index.js');
+var gopher = require('../index.js');
 var Server = require('gopher-node');
 var assert = require('chai').assert;
 
@@ -27,12 +27,13 @@ describe('gopher.client', function() {
 
   describe('getMenu', function() {
     it('should query a host for data', function(done){
-      Gopher.getMenu(host,port,'example', function(error, menu) {
+      var client = new gopher.Client();
+      client.getMenu(host,port,'example', function(error, menu) {
         assert.equal(error, undefined);
         assert.typeOf(menu, 'array');
-      
+
         var entry = menu[0];
-        assert.instanceOf(entry, Gopher.MenuEntry);
+        assert.instanceOf(entry, gopher.MenuEntry);
         assert.equal(entry.text(), 'Loopback');
         assert.equal(entry.path(), 'example');
         assert.equal(entry.host(), host);
@@ -42,7 +43,8 @@ describe('gopher.client', function() {
     });
 
     it('should return the system error when it cannot connect', function(done) {
-      Gopher.getMenu(host,port+1, 'example', function(error, menu) {
+      var client = new gopher.Client();
+      client.getMenu(host,port+1, 'example', function(error, menu) {
         assert.ok(error);
         assert.match(error.message, /connect ECONNREFUSED/);
         assert.deepEqual(menu, []);
@@ -51,4 +53,3 @@ describe('gopher.client', function() {
     });
   });
 });
-
