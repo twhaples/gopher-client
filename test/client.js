@@ -24,9 +24,9 @@ describe('gopher.client', function() {
   });
 
 
-  describe("get", function() {
+  describe("getMenu", function() {
     it("should query a host for data", function(done){
-      Gopher.get(host,port,'example', function(error, menu) {
+      Gopher.getMenu(host,port,'example', function(error, menu) {
         assert.equal(error, undefined);
         assert.typeOf(menu, 'array');
       

@@ -12,7 +12,7 @@ MenuEntry.prototype.port = function() { return this.data.port; };
 
 module.exports = {
   MenuEntry: MenuEntry,
-  get: function(host, port, path, callback) {
+  getMenu: function(host, port, path, callback) {
     var socket = net.createConnection(
       {host: host, port: port});
 
