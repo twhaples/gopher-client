@@ -1,0 +1,22 @@
+{
+  "name": "gopher-client",
+  "version": "1.0.0",
+  "description": "Gopher client",
+  "main": "index.js",
+  "scripts": {
+    "test": "true"
+  },
+  "keywords": [
+    "gopher"
+  ],
+  "author": "Thomas Whaples <fennec@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "gopher-node": "^0.1.0",
+    "mocha": "^2.4.5"
+  },
+  "dependencies": {
+    "carrier": "^0.3.0"
+  }
+}
