@@ -1,6 +1,6 @@
 'use strict';
 var net = require('net');
-var carrier = require('carrier'); // TODO: write better tests
+var carrier = require('carrier');
 
 var MenuEntry = function(type, text, path, host, port) {
   this.data = {type: type, text: text, path: path, host: host, port: port};

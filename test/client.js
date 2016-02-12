@@ -7,7 +7,8 @@ var host = '127.0.0.1';
 var port = 7770;
 
 var testApp = Server.createServer(function(req, resp) {
-  resp.write(['1Loopback', 'example', host, port].join('\t'));
+  resp.write(['1Loopback', 'example'].join('\t'));
+  resp.write(['', host, port].join('\t'));
   resp.write('\r\n.\r\n');
   resp.end();
 });
@@ -36,6 +37,15 @@ describe('gopher.client', function() {
         assert.equal(entry.path(), 'example');
         assert.equal(entry.host(), host);
         assert.equal(entry.port(), port);
+        done();
+      });
+    });
+
+    it('should return the system error when it cannot connect', function(done) {
+      Gopher.getMenu(host,port+1, 'example', function(error, menu) {
+        assert.ok(error);
+        assert.match(error.message, /connect ECONNREFUSED/);
+        assert.deepEqual(menu, []);
         done();
       });
     });
