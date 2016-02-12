@@ -1,7 +1,9 @@
 'use strict';
-var gopher = require('../index.js');
 var Server = require('gopher-node');
 var assert = require('chai').assert;
+
+var gopher = require('../index.js');
+var MenuEntry = require('../lib/menu-entry')
 
 var host = '127.0.0.1';
 var port = 7770;
@@ -33,7 +35,7 @@ describe('gopher.client', function() {
         assert.typeOf(menu, 'array');
 
         var entry = menu[0];
-        assert.instanceOf(entry, gopher.MenuEntry);
+        assert.instanceOf(entry, MenuEntry);
         assert.equal(entry.text(), 'Loopback');
         assert.equal(entry.path(), 'example');
         assert.equal(entry.host(), host);
