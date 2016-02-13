@@ -14,7 +14,8 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "gopher-node": "^0.1.0",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "raw-body": "^2.1.5"
   },
   "dependencies": {
     "carrier": "^0.3.0"
