@@ -3,7 +3,7 @@ var Server = require('gopher-node');
 var assert = require('chai').assert;
 
 var gopher = require('../index.js');
-var MenuEntry = require('../lib/menu-entry')
+var DirectoryEntry = require('../lib/directory-entry')
 
 var host = '127.0.0.1';
 var port = 7770;
@@ -27,13 +27,13 @@ describe('gopher.client', function() {
   });
 
 
-  describe('getMenu', function() {
+  describe('getDirectory', function() {
     it('should query a host for data', function(done){
       var client = new gopher.Client();
-      client.getMenu(host,port,'example', function(error, menu) {
+      client.getDirectory(host,port,'example', function(error, Directory) {
         assert.equal(error, undefined);
-        assert.deepEqual(menu, [
-          new MenuEntry('1', 'Loopback', 'example', host, port)
+        assert.deepEqual(Directory, [
+          new DirectoryEntry('1', 'Loopback', 'example', host, port)
         ]);
         done();
       });
@@ -41,10 +41,10 @@ describe('gopher.client', function() {
 
     it('should return the system error when it cannot connect', function(done) {
       var client = new gopher.Client();
-      client.getMenu(host,port+1, 'example', function(error, menu) {
+      client.getDirectory(host,port+1, 'example', function(error, Directory) {
         assert.ok(error);
         assert.match(error.message, /connect ECONNREFUSED/);
-        assert.deepEqual(menu, []);
+        assert.deepEqual(Directory, []);
         done();
       });
     });
