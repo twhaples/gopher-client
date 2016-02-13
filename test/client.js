@@ -1,7 +1,7 @@
 'use strict';
 var Server = require('gopher-node');
 var assert = require('chai').assert;
-var getRawBody = require('raw-body')
+var getRawBody = require('raw-body');
 
 var gopher = require('../index.js');
 var DirectoryEntry = require('../lib/directory-entry');
