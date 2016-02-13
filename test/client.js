@@ -1,7 +1,7 @@
 'use strict';
-var Server = require('gopher-node');
 var assert = require('chai').assert;
 var getRawBody = require('raw-body');
+var GopherNodeServer = require('gopher-node');
 
 var gopher = require('../index.js');
 var DirectoryEntry = require('../lib/directory-entry');
@@ -9,13 +9,14 @@ var DirectoryEntry = require('../lib/directory-entry');
 var host = '127.0.0.1';
 var port = 7770;
 
-var testApp = Server.createServer(function (req, resp) {
+var testApp = GopherNodeServer.createServer(function (req, resp) {
   if (req.url === 'example') {
     resp.write(['1Loopback', 'example'].join('\t'));
     resp.write(['', host, port].join('\t'));
     resp.write('\r\n.\r\n');
   } else if (req.url === 'file') {
-    resp.write("unstructured\ntext");
+    resp.write("unstruc");
+    resp.write("tured\ntext");
   }
   resp.end();
 });
@@ -66,6 +67,16 @@ describe('gopher.client', function () {
           assert.equal(result.toString('ascii'), 'unstructured\ntext');
           done();
         });
+      });
+    });
+
+    it('should return the system error when it cannot connect', function (done) {
+      var client = new gopher.Client();
+      client.getResource(host, port + 1, 'file', function (error, stream) {
+        assert.ok(error);
+        assert.match(error.message, /connect ECONNREFUSED/);
+        assert.equal(stream, undefined);
+        done();
       });
     });
   });

@@ -11,6 +11,7 @@ describe('DirectoryEntry', function () {
       );
     });
   });
+
   describe('.uri', function () {
     it('should return null for information/error messages', function () {
       assert.equal(new DirectoryEntry('i', 'text', 'ble', 'blah', 7777).uri(), null);
