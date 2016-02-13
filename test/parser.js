@@ -38,5 +38,14 @@ describe('Parser', function(){
       var parsed = new Parser().parseLine('1x\ty\texample.net\t70\tgopher+++');
       assert.deepEqual(parsed, new MenuEntry('1','x','y','example.net',70));
     });
+
+    describe('on unparseable lines', function(){
+      var parse = function(line){ return new Parser().parseLine(line); };
+      it('should return null when something cannot be parsed', function(){
+        assert.equal(parse(''), null, 'the empty string');
+        assert.equal(parse('.'), null, 'the dot at the end of a gopher list');
+        assert.equal(parse('0hello\tworld'), null, 'a line that is too short');
+      });
+    });
   });
 });

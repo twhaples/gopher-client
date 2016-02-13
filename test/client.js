@@ -32,14 +32,9 @@ describe('gopher.client', function() {
       var client = new gopher.Client();
       client.getMenu(host,port,'example', function(error, menu) {
         assert.equal(error, undefined);
-        assert.typeOf(menu, 'array');
-
-        var entry = menu[0];
-        assert.instanceOf(entry, MenuEntry);
-        assert.equal(entry.text(), 'Loopback');
-        assert.equal(entry.path(), 'example');
-        assert.equal(entry.host(), host);
-        assert.equal(entry.port(), port);
+        assert.deepEqual(menu, [
+          new MenuEntry('1', 'Loopback', 'example', host, port)
+        ]);
         done();
       });
     });
