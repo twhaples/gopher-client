@@ -4,18 +4,23 @@
   "description": "Gopher client",
   "main": "index.js",
   "scripts": {
-    "test": "true"
+    "test": "node_modules/mocha/bin/mocha test/"
   },
   "keywords": [
     "gopher"
   ],
   "author": "Thomas Whaples <fennec@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twhaples/gopher-client.git"
+  },
   "license": "ISC",
   "devDependencies": {
     "chai": "^3.5.0",
     "gopher-node": "^0.1.0",
     "mocha": "^2.4.5",
-    "raw-body": "^2.1.5"
+    "raw-body": "^2.1.5",
+    "sinon": "^1.17.3"
   },
   "dependencies": {
     "carrier": "^0.3.0"
