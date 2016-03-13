@@ -41,7 +41,7 @@ describe('gopher.client', function () {
         assert.deepEqual(directory, [
           new DirectoryEntry('1', 'Loopback', 'example', host, port)
         ]);
-        done();
+        setImmediate(done);
       });
     });
 
@@ -51,7 +51,7 @@ describe('gopher.client', function () {
         assert.ok(error);
         assert.match(error.message, /connect ECONNREFUSED/);
         assert.deepEqual(directory, []);
-        done();
+        setImmediate(done);
       });
     });
   });
@@ -65,7 +65,7 @@ describe('gopher.client', function () {
         getRawBody(stream, {}, function (error2, result) {
           assert.equal(error2, undefined);
           assert.equal(result.toString('ascii'), 'unstructured\ntext');
-          done();
+          setImmediate(done);
         });
       });
     });
@@ -76,7 +76,7 @@ describe('gopher.client', function () {
         assert.ok(error);
         assert.match(error.message, /connect ECONNREFUSED/);
         assert.equal(stream, undefined);
-        done();
+        setImmediate(done);
       });
     });
   });
